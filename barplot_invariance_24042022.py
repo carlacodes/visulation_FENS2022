@@ -40,13 +40,13 @@ ax = sns.barplot([1,2,3,4,5,6,7], np.mean(matversion_eclair, axis=0), color='nav
 ax=sns.barplot([1,2,3,4,5,6,7], np.mean(matversion_crumble, axis=0),  color='purple',  alpha=0.3, label='F1901')
 plt.title('Change in decoding score between train and test dataset, inter-trial roving', fontsize=10)
 str={'craft', "in contrast to", "when a", "accurate", "rev instruments", "of science", "pink noise instruments"}
-plt.xticks([0,1,2,3,4,5,6], labels=str, rotation=90)
+plt.xticks([0,1,2,3,4,5,6], labels=str, rotation=45)
 plt.xlabel('Distractor')
 plt.ylabel('Change in Mean Decoding Score for All Sites')
 
 plt.legend(fontsize=8)
 plt.ylim([-0.35, 0.35])
-plt.savefig(bin_folder + '\seabornbarplot_l28.png')
+plt.savefig(bin_folder + '\seabornbarplot_l28.png', bbox_inches='tight')
 plt.show()
 
 
@@ -59,12 +59,12 @@ ax2 = sns.barplot([1,2,3,4,5,6,7], np.mean(matversion_eclair_l27, axis=0), color
 ax2=sns.barplot([1,2,3,4,5,6,7], np.mean(matversion_crumble_L27, axis=0),  color='purple',  alpha=0.3, label='F1901')
 plt.xlabel('Distractor')
 str={'craft', "in contrast to", "when a", "accurate", "rev instruments", "of science", "pink noise instruments"}
-plt.xticks([0,1,2,3,4,5,6], labels=str, rotation=90)
+plt.xticks([0,1,2,3,4,5,6], labels=str, rotation=45)
 plt.ylabel('Change in Mean Decoding Score for All Sites')
 
 plt.title('Change in decoding score between train and test dataset, intra-trial roving',fontsize=10)
 
 plt.legend(fontsize=8)
 plt.ylim([-0.35, 0.35])
-plt.savefig(bin_folder + '\seabornbarplot_l27.png', dpi=500)
+plt.savefig(bin_folder + '\seabornbarplot_l27.png', dpi=500, bbox_inches='tight')
 plt.show()
