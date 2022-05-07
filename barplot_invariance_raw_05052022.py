@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 
 bin_folder='D:\Data\Results\InvarianceScores'
-fname='proxmat.mat'
+fname='proxmat_raw.mat'
 info_barplot = rd.loadmat(bin_folder + os.sep + fname)
 
 matversion_crumble=info_barplot['matversion_crumble']
@@ -38,7 +38,7 @@ ax=sns.stripplot(data=matversion_eclair, jitter=0.1, color='navy', alpha=0.8)
 ax = sns.barplot([1,2,3], zola_y_l28,  color='green', label='F1702',alpha=.3)
 ax = sns.barplot([1,2,3,4,5,6,7], np.mean(matversion_eclair, axis=0), color='navy', alpha=0.3, label='F1902')
 ax=sns.barplot([1,2,3,4,5,6,7], np.mean(matversion_crumble, axis=0),  color='purple',  alpha=0.3, label='F1901')
-plt.title('Change in decoding score between train and test dataset, inter-trial roving relative score', fontsize=8)
+plt.title('Change in decoding score between train and test dataset, inter-trial roving', fontsize=10)
 str={'craft', "in contrast to", "when a", "accurate", "rev instruments", "of science", "pink noise instruments"}
 plt.xticks([0,1,2,3,4,5,6], labels=str, rotation=45)
 plt.xlabel('Distractor')
@@ -46,7 +46,7 @@ plt.ylabel('Change in Mean Decoding Score for All Sites')
 
 plt.legend(fontsize=8)
 plt.ylim([-0.35, 0.35])
-plt.savefig(bin_folder + '\seabornbarplot_l28.png', bbox_inches='tight')
+plt.savefig(bin_folder + '\seabornbarplot_l28_raw.png', bbox_inches='tight')
 plt.show()
 
 
@@ -62,9 +62,9 @@ str={'craft', "in contrast to", "when a", "accurate", "rev instruments", "of sci
 plt.xticks([0,1,2,3,4,5,6], labels=str, rotation=45)
 plt.ylabel('Change in Mean Decoding Score for All Sites')
 
-plt.title('Change in decoding score between train and test dataset, intra-trial roving relative score',fontsize=8)
+plt.title('Change in decoding score between train and test dataset, intra-trial roving',fontsize=10)
 
 plt.legend(fontsize=8)
 plt.ylim([-0.35, 0.35])
-plt.savefig(bin_folder + '\seabornbarplot_l27.png', dpi=500, bbox_inches='tight')
+plt.savefig(bin_folder + '\seabornbarplot_raw_l27.png', dpi=500, bbox_inches='tight')
 plt.show()
