@@ -27,7 +27,7 @@ for i in range(0, len(heatmap_bychan)):
         selected_rect_data_raw[index_x_selec][index_y_s]=np.empty(1)
     #selected_rect_data_raw=np.array2string(selected_rect_data_raw, formatter={'float_kind': lambda x: "%.2f" % x})
 
-    ax=sns.heatmap(selected_rect_data, xticklabels=str, yticklabels=str, cmap='Blues',annot=selected_rect_data_raw, vmin=0, vmax=0.2)
+    ax=sns.heatmap(selected_rect_data, xticklabels=str, yticklabels=str, cmap='Blues',annot=selected_rect_data_raw, cbar_kws={'label': 'significance score'}, vmin=0, vmax=0.2)
     for text, show_annot in zip(ax.texts, (element for row in show_annot_array for element in row)):
         text.set_visible(show_annot)
 
