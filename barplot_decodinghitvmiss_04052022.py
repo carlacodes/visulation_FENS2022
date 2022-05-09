@@ -51,7 +51,7 @@ matversion_difference=info_barplot['differencemat']
 df = pd.DataFrame(matversion_difference, columns = ['Rove','Natural'])
 
 ax=sns.boxplot(y=df["Rove"])
-plt.title('Decoding score of behavioural response outcome, linear shift model', fontsize=10)
+plt.title('Decoding score of behavioural response using data post-linear shift model', fontsize=10)
 str={'roved F0', 'control F0'}
 plt.xticks([0,1], labels=str, rotation=45)
 plt.xlabel('F0 Type of Target Stimulus')
@@ -59,9 +59,10 @@ plt.ylabel('Relative decoding score (score-chance)')
 
 plt.legend(fontsize=8)
 plt.ylim([-0.35, 0.4])
-plt.savefig(bin_folder + '\seabornboxplotmissvhit_l27.png', bbox_inches='tight')
-ax = sns.boxplot(data=df, orient="y", palette="Set2")
+ax = sns.boxplot(data=df, orient="y", palette="magma")
 ax=sns.stripplot(data=df, jitter=0.1, palette='husl', alpha=1)
+plt.savefig(bin_folder + '\seabornboxplotmissvhit_l27.png', bbox_inches='tight')
+
 plt.show()
 
 
@@ -72,7 +73,7 @@ matversion_difference_orig=info_barplot['differencemat']
 
 df_orig = pd.DataFrame(matversion_difference_orig, columns = ['Rove','Natural'])
 
-plt.title('Decoding score of behavioural response outcome, original data', fontsize=10)
+plt.title('Decoding score of behavioural response using original data', fontsize=10)
 str={'roved F0', 'control F0'}
 plt.xticks([0,1], labels=str, rotation=45)
 plt.xlabel('F0 Type of Target Stimulus')
@@ -80,9 +81,10 @@ plt.ylabel('Relative decoding score (score-chance)')
 
 plt.legend(fontsize=8)
 plt.ylim([-0.35, 0.4])
-plt.savefig(bin_folder + '\seabornboxplothitvsmiss_origdata_l27.png', bbox_inches='tight')
-ax = sns.boxplot(data=df_orig, orient="y", palette="Set2")
+ax = sns.boxplot(data=df_orig, orient="y", palette="magma")
 ax=sns.stripplot(data=df_orig, jitter=0.1, palette='husl', alpha=1)
+plt.savefig(bin_folder + '\seabornboxplothitvsmiss_origdata_l27.png', bbox_inches='tight')
+
 plt.show()
 
 
