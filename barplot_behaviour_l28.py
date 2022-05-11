@@ -44,7 +44,7 @@ info_barplot_df_indivMhit=pd.DataFrame(combined_indiv_hit_M, columns=['Macaroni'
 
 
 # mean_hit_data=pd.DataFrame(mean_hit_data, columns = ['1', '2', '3', '4', '5', '6'])
-ax=sns.barplot(x="Pitch", y="Hit_Rate", yerr=info_barplot['SD_ABC'], data=info_barplot_df, palette=colors, alpha=0.8, ax=ax1)
+ax=sns.barplot(x="Pitch", y="Hit_Rate", yerr=info_barplot['SD_ABC'], data=info_barplot_df, palette=colors, alpha=0.8, ax=ax1, label='Mean Hits')
 ax=sns.lineplot(data=info_barplot_df_indivFhit, x='Pitch', y='Macaroni', color='royalblue', ax=ax1)
 ax=sns.lineplot(data=info_barplot_df_indivFhit, x='Pitch', y='Cruella', color='darkorange')
 ax=sns.lineplot(data=info_barplot_df_indivFhit, x='Pitch', y='Zola', color='orangered')
@@ -55,7 +55,7 @@ ax=sns.lineplot(data=info_barplot_df_indivMhit, x='Pitch', y='Macaroni',color='c
 ax=sns.lineplot(data=info_barplot_df_indivMhit, x='Pitch', y='Cruella', color='orange')
 ax=sns.lineplot(data=info_barplot_df_indivMhit, x='Pitch', y='Zola',  color='red')
 ax=sns.lineplot(data=info_barplot_df_indivMhit, x='Pitch', y='Tina',  color='hotpink')
-ax2=sns.barplot(x="Pitch", y="False_Alarm_Rate", yerr=(info_barplot['SD_ABCFA']), data=info_barplot_df, color='mintcream', ax=ax1)
+ax2=sns.barplot(x="Pitch", y="False_Alarm_Rate", yerr=(info_barplot['SD_ABCFA']), data=info_barplot_df, color='mintcream', ax=ax1, label='Mean False Alarms')
 widthbars = [0.8, 0.8, 0.8, 0.8, 0.8,0.8, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
 for bar, newwidth in zip(ax2.patches, widthbars):
     x = bar.get_x()
@@ -64,6 +64,9 @@ for bar, newwidth in zip(ax2.patches, widthbars):
     bar.set_x(centre - newwidth/2.)
     bar.set_width(newwidth)
 ax.set(ylim=(0, 1))
+x = np.linspace(-0.5,5.5,100)
+y = [0.33] * 100
+plt.plot(x, y,'--y',label='Chance')
 
 ax.set_ylabel('P. of Responses ', fontsize=15)
 ax.set_xlabel('Mean Fundamental Frequency (Hz)', fontsize=15)
@@ -75,6 +78,8 @@ ax3.set_xlim([0,ax.get_xlim()[1]])
 ax3.set_xticks([1.4, 4.15])
 ax3.set_xticklabels(['Female', 'Male'], fontsize=12)
 #ax[0].set_color('cyan')
+ax.legend()
+
 fig.tight_layout()
 plt.savefig(bin_folder + '\seabornboxplotbehaviouralmeansbypitch_l28.png', bbox_inches='tight')
 
