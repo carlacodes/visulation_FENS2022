@@ -47,7 +47,7 @@ for i, txt in enumerate( info_barplot['combinedMatCatch'][3]):
 
 x = np.linspace(0,3.5,100)
 y = [0.33] * 100
-plt.plot(x, y,'--y',label='Chance')
+# plt.plot(x, y,'--y',label='Chance')
 plt.ylim([0, 1])
 plt.xticks([0,1,2,3], labels=['F1702 Zola', 'F1815 Cruella', 'F1803 Tina*', 'F2002 Macaroni*'])
 plt.legend(fontsize=8)
