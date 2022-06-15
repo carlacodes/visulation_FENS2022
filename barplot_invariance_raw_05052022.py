@@ -39,7 +39,7 @@ ax = sns.barplot([1,2,3], zola_y_l28,  color='green', label='F1702, trained',alp
 ax = sns.barplot([1,2,3,4,5,6,7], np.mean(matversion_eclair, axis=0), color='navy', alpha=0.3, label='F1902, naive')
 ax=sns.barplot([1,2,3,4,5,6,7], np.mean(matversion_crumble, axis=0),  color='purple',  alpha=0.3, label='F1901, naive')
 plt.title('Change in decoding score between train and test dataset, inter-trial roving', fontsize=10)
-str={'craft', "in contrast to", "when a", "accurate", "rev instruments", "of science", "pink noise instruments"}
+str=['craft', "in contrast to", "when a", "accurate", "rev instruments", "of science", "pink noise instruments"]
 plt.xticks([0,1,2,3,4,5,6], labels=str, rotation=45)
 plt.xlabel('Distractor')
 plt.ylabel('Change in Mean Decoding Score for All Sites')
@@ -58,8 +58,9 @@ ax2 = sns.barplot([1,2,3,4,5,6,7], zola_y_l27_bar,  color='green', label='F1702,
 ax2 = sns.barplot([1,2,3,4,5,6,7], np.mean(matversion_eclair_l27, axis=0), color='navy', alpha=0.3, label='F1902, naive')
 ax2=sns.barplot([1,2,3,4,5,6,7], np.mean(matversion_crumble_L27, axis=0),  color='purple',  alpha=0.3, label='F1901, naive')
 plt.xlabel('Distractor')
-str={'craft', "in contrast to", "when a", "accurate", "rev instruments", "of science", "pink noise instruments"}
-plt.xticks([0,1,2,3,4,5,6], labels=str, rotation=45)
+
+str=['craft', "in contrast to", "when a", "accurate", "rev instruments", "of science", "pink noise instruments"]
+plt.xticks([0,1, 2,3,4,5,6], labels=str, rotation=45)
 plt.ylabel('Change in Mean Decoding Score for All Sites')
 
 plt.title('Change in decoding score between train and test dataset, intra-trial roving',fontsize=10)
