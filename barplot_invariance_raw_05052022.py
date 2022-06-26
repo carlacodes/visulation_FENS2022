@@ -46,7 +46,7 @@ plt.ylabel('Change in Mean Decoding Score for All Sites')
 
 plt.legend(fontsize=8)
 plt.ylim([-0.35, 0.35])
-plt.savefig(bin_folder + '\seabornbarplot_l28_raw.png', bbox_inches='tight')
+plt.savefig(bin_folder + '\seabornbarplot_l28_raw_26062022.png', bbox_inches='tight')
 plt.show()
 
 
@@ -67,5 +67,5 @@ plt.title('Change in decoding score between train and test dataset, intra-trial 
 
 plt.legend(fontsize=8)
 plt.ylim([-0.35, 0.35])
-plt.savefig(bin_folder + '\seabornbarplot_raw_l27.png', dpi=500, bbox_inches='tight')
+plt.savefig(bin_folder + '\seabornbarplot_raw_26062022_l27.png', dpi=500, bbox_inches='tight')
 plt.show()
