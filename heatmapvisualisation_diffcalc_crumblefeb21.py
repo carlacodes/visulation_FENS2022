@@ -4,7 +4,7 @@ import os
 import seaborn as sns
 import numpy as np
 
-animalid=['Crumble', 'Eclair']
+animalid=[ 'Eclair']
 for i0 in animalid:
     bin_folder = 'D:/Data/Results/decoderResults/figures/heatmaps/'
 
@@ -58,8 +58,10 @@ for i0 in animalid:
         relative_difference=np.subtract(selected_rect_data,selected_rect_data_nps)
         sns.histplot(relative_difference)
         plt.xlim(-0.2, 0.2)
-        plt.title(i0+' '+(np.array2string(channel_list[i])))
+        plt.title(i0+', site number '+(np.array2string(channel_list[i])))
+        plt.legend(fontsize=10, labels=str)
         plt.xlabel('Rove F0 Score - Original F0 Score')
+        #plt.legend()
 
         # index_x, index_y=np.where((selected_rect_data<=0))
         # show_annot_array = selected_rect_data >0
