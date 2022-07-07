@@ -31,7 +31,7 @@ for i in range(0, len(heatmap_bychan)):
     for text, show_annot in zip(ax.texts, (element for row in show_annot_array for element in row)):
         text.set_visible(show_annot)
 
-    plt.title('Roved F0, Site Number '+(np.array2string(channel_list[i])))
-    plt.savefig(bin_folder + '\seabornheatmap_15062022_crumble_nPS_chan'+np.array2string(channel_list[i])+'.png', dpi=500, bbox_inches='tight')
+    plt.title('Crumble Original F0, Site Number '+(np.array2string(channel_list[i])))
+    plt.savefig(bin_folder + '\seabornheatmap_27062022_crumble_nPS_chan'+np.array2string(channel_list[i])+'.png', dpi=500, bbox_inches='tight')
 
     plt.show()

@@ -5,9 +5,9 @@ import seaborn as sns
 import numpy as np
 
 bin_folder='D:/Data/Results/decoderResults/figures/heatmaps/'
-fname='confusion_matrix_crumble_PS.mat'
+fname='confusion_matrix_crumblefeb21_nPS.mat'
 info_heatmap = rd.loadmat(bin_folder + os.sep + fname)
-fname_raw='confusion_matrix_raw_crumble_PS.mat'
+fname_raw='confusion_matrix_raw_crumblefeb21_nPS.mat'
 info_heatmap_raw=rd.loadmat(bin_folder + os.sep + fname_raw)
 
 heatmap_bychan=info_heatmap['reorgCellbyChan'][0]
@@ -27,11 +27,11 @@ for i in range(0, len(heatmap_bychan)):
         selected_rect_data_raw[index_x_selec][index_y_s]=np.empty(1)
     #selected_rect_data_raw=np.array2string(selected_rect_data_raw, formatter={'float_kind': lambda x: "%.2f" % x})
 
-    ax=sns.heatmap(selected_rect_data, xticklabels=str, yticklabels=str, cmap='Purples',annot=selected_rect_data_raw, cbar_kws={'label': 'significance score'}, vmin=0, vmax=0.2)
+    ax=sns.heatmap(selected_rect_data, xticklabels=str, yticklabels=str, cmap='Oranges',annot=selected_rect_data_raw, cbar_kws={'label': 'significance score'}, vmin=0, vmax=0.2)
     for text, show_annot in zip(ax.texts, (element for row in show_annot_array for element in row)):
         text.set_visible(show_annot)
 
-    plt.title('Crumble Roved F0, Site Number '+(np.array2string(channel_list[i])))
-    plt.savefig(bin_folder + '\seabornheatmap_30062022_crumble_PS_chan'+np.array2string(channel_list[i])+'.png', dpi=500, bbox_inches='tight')
+    plt.title('Crumble Original F0, Intra-trial Roving, Site Number '+(np.array2string(channel_list[i])))
+    plt.savefig(bin_folder + '\seabornheatmap_04072022_crumble_nPSfeb21L27_chan'+np.array2string(channel_list[i])+'.png', dpi=500, bbox_inches='tight')
 
     plt.show()
