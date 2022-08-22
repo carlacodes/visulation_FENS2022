@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 
 bin_folder='D:\Data\Results\InvarianceScores'
-fname='proxmat_raw2108.mat'
+fname='proxmat_raw2208.mat'
 info_barplot = rd.loadmat(bin_folder + os.sep + fname)
 
 matversion_crumble=info_barplot['matversion_crumble']
