@@ -16,7 +16,9 @@ matversion_eclair=info_barplot['matversion_eclair']
 matversion_eclair_l27=info_barplot['matversion_eclair_l27']
 matversion_zola=info_barplot['matversion_zola']
 matversion_zola_l27=info_barplot['matversion_zola_l27']
-tips = sns.load_dataset("tips")
+tips = sns.load_dataset(""
+                        ""
+                        "tips")
 
 ax = plt.subplots()
 #zola=bar(mean(matversion_zola(:, [2,1,3])))
