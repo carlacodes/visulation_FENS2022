@@ -47,7 +47,7 @@ plt.title('Decoding score relative to chance, trained on control F0 and tested o
 str=['craft', "in contrast to", "when a", "accurate", "rev instruments", "of science", "pink noise instruments"]
 plt.xticks([0,1,2,3,4,5,6], labels=str, rotation=45)
 plt.xlabel('Distractor')
-plt.ylabel('Change in Mean Decoding Score for All Sites')
+plt.ylabel('Decoding Score Relative to Chance for All Sites')
 
 plt.legend(fontsize=8)
 plt.ylim([-0.4, 0.4])
@@ -66,7 +66,7 @@ plt.xlabel('Distractor')
 
 str=['craft', "in contrast to", "when a", "accurate", "rev instruments", "of science", "pink noise instruments"]
 plt.xticks([0,1, 2,3,4,5,6], labels=str, rotation=45)
-plt.ylabel('Change in Mean Decoding Score for All Sites')
+plt.ylabel('Decoding Score Relative to Chance for All Sites')
 
 plt.title('Decoding score relative to chance, trained on control F0 and tested on roved F0 intra-trial roving',fontsize=10)
 

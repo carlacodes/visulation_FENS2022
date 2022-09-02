@@ -52,7 +52,7 @@ plt.ylim([0, 1])
 plt.xticks([0,1,2,3], labels=['F1702 Zola', 'F1815 Cruella', 'F1803 Tina*', 'F2002 Macaroni*'])
 plt.legend(fontsize=8)
 plt.xlabel('Ferret Identity', fontsize=15)
-plt.ylabel('P of Correct Responses', fontsize=15)
+plt.ylabel('P. of Hits', fontsize=15)
 plt.title('Proportion of Correct Responses for \n Intra and Inter-trial F0 Roving', fontsize=20)
 plt.savefig(bin_folder + '\seaborn_scatter_hits120522.png', dpi=500, bbox_inches='tight')
 

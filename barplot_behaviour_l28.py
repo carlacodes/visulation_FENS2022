@@ -68,7 +68,7 @@ x = np.linspace(-0.5,5.5,100)
 y = [0.33] * 100
 #plt.plot(x, y,'--y',label='Chance')
 
-ax.set_ylabel('P. of Responses ', fontsize=15)
+ax.set_ylabel('P. of Hits and False Alarms ', fontsize=15)
 ax.set_xlabel('Mean Fundamental Frequency (Hz)', fontsize=15)
 ax.set_xticklabels(["144","191","251","109 ","124","144 "], fontsize=12)
 ax.set_xticklabels(ax.get_xticklabels(),rotation = 30)
