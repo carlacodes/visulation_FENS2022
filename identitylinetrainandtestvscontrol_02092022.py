@@ -59,13 +59,20 @@ arraytoplot_eclair[:,1]=matversion_eclair_l27
 
 df2 = pd.DataFrame(arraytoplot,
                    columns=['original F0', 'trained on original F0, tested on rove F0'])
-
+l27zolastddev=df2.mean()
 df_crumble=pd.DataFrame(arraytoplot_crumble, columns=['original F0', 'trained on original F0, tested on rove F0'])
 df_eclair=pd.DataFrame(arraytoplot_eclair, columns=['original F0', 'trained on original F0, tested on rove F0'])
 
 ax=sns.scatterplot(data=df2, x="original F0", y="trained on original F0, tested on rove F0", label='F1702, trained', alpha=0.7)
-#ax=sns.scatterplot(data=df_crumble, x="original F0", y="trained on original F0, tested on rove F0", label='F1901, naive', alpha=0.7)
-#ax=sns.scatterplot(data=df_eclair, x="original F0", y="trained on original F0, tested on rove F0", label='F1902, naive', alpha=0.7)
+#ax=sns.pointplot(data=df2.mean(), x="original F0", y="trained on original F0, tested on rove F0", label='F1702, trained mean',ci='sd')
+
+plt.errorbar(x=df2.mean()[0], y=df2.mean()[1], xerr=df2.std()[0], yerr=df2.std()[1], fmt='o', label='F1702 trained mean and std')
+
+ax=sns.scatterplot(data=df_crumble, x="original F0", y="trained on original F0, tested on rove F0", label='F1901, naive', alpha=0.7)
+plt.errorbar(x=df_crumble.mean()[0], y=df_crumble.mean()[1], xerr=df_crumble.std()[0], yerr=df_crumble.std()[1], fmt='o',  label='F1901 naive mean and std')
+
+ax=sns.scatterplot(data=df_eclair, x="original F0", y="trained on original F0, tested on rove F0", label='F1902, naive', alpha=0.7)
+plt.errorbar(x=df_eclair.mean()[0], y=df_eclair.mean()[1], xerr=df_eclair.std()[0], yerr=df_eclair.std()[1], fmt='o',  label='F1902 naive mean and std')
 
 
 x = np.linspace(-5,5,100)
@@ -73,6 +80,7 @@ y = x
 plt.plot(x, y, 'k--', label='identity line')
 ax.set(ylim=(-0.3,0.5), xlim=(-0.3, 0.5))
 plt.title('Trained on Original F0, Tested on Roved F0 Scores vs. \n Original F0 Relative Decoding Scores \n (intra-trial roving)')
+plt.legend()
 plt.show()
 # arraytoplot=np.concatenate((matversion_zola_l27, matversion_zola_l27_control), axis=0)
 
@@ -112,8 +120,15 @@ df_crumble=pd.DataFrame(arraytoplot_crumble, columns=['original F0', 'trained on
 df_eclair=pd.DataFrame(arraytoplot_eclair, columns=['original F0', 'trained on original F0, tested on rove F0'])
 
 ax=sns.scatterplot(data=df2, x="original F0", y="trained on original F0, tested on rove F0", label='F1702, trained', alpha=0.7)
+#ax=sns.pointplot(data=df2.mean(), x="original F0", y="trained on original F0, tested on rove F0", label='F1702, trained mean',ci='sd')
+
+plt.errorbar(x=df2.mean()[0], y=df2.mean()[1], xerr=df2.std()[0], yerr=df2.std()[1], fmt='o', label='F1702 trained mean and std')
+
 ax=sns.scatterplot(data=df_crumble, x="original F0", y="trained on original F0, tested on rove F0", label='F1901, naive', alpha=0.7)
+plt.errorbar(x=df_crumble.mean()[0], y=df_crumble.mean()[1], xerr=df_crumble.std()[0], yerr=df_crumble.std()[1], fmt='o',  label='F1901 naive mean and std')
+
 ax=sns.scatterplot(data=df_eclair, x="original F0", y="trained on original F0, tested on rove F0", label='F1902, naive', alpha=0.7)
+plt.errorbar(x=df_eclair.mean()[0], y=df_eclair.mean()[1], xerr=df_eclair.std()[0], yerr=df_eclair.std()[1], fmt='o',  label='F1902 naive mean and std')
 
 
 x = np.linspace(-5,5,100)
@@ -121,4 +136,6 @@ y = x
 plt.plot(x, y, 'k--', label='identity line')
 ax.set(ylim=(-0.3,0.5), xlim=(-0.3, 0.5))
 plt.title('Trained on Original F0, Tested on Roved F0 Scores vs. \n Original F0 Relative Decoding Scores \n (Inter-trial roving)')
+plt.legend()
+
 plt.show()

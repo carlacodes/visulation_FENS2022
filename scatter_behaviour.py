@@ -15,7 +15,7 @@ info_barplot = rd.loadmat(bin_folder + os.sep + fname)
 # mean_fa_data=(info_barplot['meanABCFA'])
 xA, xB = np.random.normal(0, 0.1, len(info_barplot['combinedmat'][0])), np.random.normal(1, 0.1, len(info_barplot['combinedmat'][0]))
 xC, xD = np.random.normal(2, 0.1, len(info_barplot['combinedmat'][0])), np.random.normal(3, 0.1, len(info_barplot['combinedmat'][0]))
-
+#
 #
 # ax=sns.stripplot(x=[0,1,2,3], y=info_barplot['combinedmat'][0], s=10, jitter=0.2)
 # ax=sns.stripplot(x=[0,1,2,3], y=info_barplot['combinedmat'][1], s=10, jitter=0.2)
