@@ -10,13 +10,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 bin_folder='D:/Data/Results/L28general/nopitchshift'
-fname='scatter_hit_data_dividedbymandF.mat'
+fname='scatter_FA_data_dividedbymandF.mat'
 info_barplot = rd.loadmat(bin_folder + os.sep + fname)
 #matversion_difference=info_barplot['differencemat
 mean_hit_data=(info_barplot['combinedmat'])
 individual_hit_data=(info_barplot['combinedmatindividual'])
 
-trialnumbers=(info_barplot['combinedMatnonCatch'])
+trialnumbers=(info_barplot['combinedMatCatch'])
 trialnumberscontrol1=np.sum(trialnumbers[0,:])
 trialnumberscontrol2=np.sum(trialnumbers[1,:])
 intratrialcontrol=np.concatenate((mean_hit_data[:,2],mean_hit_data[:,3]))
@@ -41,8 +41,8 @@ index = ['Female', 'Male']
 
 #'F1702 Zola', 'F1815 Cruella', 'F1803 Tina*', 'F2002 Macaroni*']
 
-df = pd.DataFrame({'Control F0': new_mean_hit_Data[0,:],
-                    'Intra-trial Roved F0': new_mean_hit_Data[1,:],'Inter-trial Roved F0': new_mean_hit_Data[2,:] }, index=index)
+df = pd.DataFrame({'Control': new_mean_hit_Data[0,:],
+                    'Intra': new_mean_hit_Data[1,:],'Inter': new_mean_hit_Data[2,:] }, index=index)
 #macaroni is the first row for individual_hit_data
 mac_control_hit=np.zeros((3,2))
 mac_control_hit[0,0]=individual_hit_data2[0]
@@ -84,16 +84,16 @@ zola_control_hit[2,1]=individual_hit_data[3,5]
 
 
 df_individual_macaroni = pd.DataFrame({'Control F0': mac_control_hit[0,:],
-                    'Intra-trial Roved F0': mac_control_hit[1,:],'Inter-trial Roved F0': mac_control_hit[2,:], }, index=index)
+                    'Intra': mac_control_hit[1,:],'Inter': mac_control_hit[2,:], }, index=index)
 
 df_individual_tina = pd.DataFrame({'Control F0': tina_control_hit[0,:],
-                    'Intra-trial Roved F0': tina_control_hit[1,:],'Inter-trial Roved F0': tina_control_hit[2,:], }, index=index)
+                    'Intra=': tina_control_hit[1,:],'Inter': tina_control_hit[2,:], }, index=index)
 
 df_individual_cruella = pd.DataFrame({'Control F0': cruella_control_hit[0,:],
-                    'Intra-trial Roved F0': cruella_control_hit[1,:],'Inter-trial Roved F0': cruella_control_hit[2,:], }, index=index)
+                    'Intra': cruella_control_hit[1,:],'Inter': cruella_control_hit[2,:], }, index=index)
 
 df_individual_zola = pd.DataFrame({'Control F0': zola_control_hit[0,:],
-                    'Intra-trial Roved F0': zola_control_hit[1,:],'Inter-trial Roved F0': zola_control_hit[2,:], }, index=index)
+                    'Intra': zola_control_hit[1,:],'Inter': zola_control_hit[2,:], }, index=index)
 
 ax = df.plot.bar(rot=0)
 def jitter_dots(dots):
@@ -127,7 +127,7 @@ plt.scatter([0.8],mac_control_hit[0,1],c='blue')
 plt.scatter([0.99],mac_control_hit[1,1], c='orange')
 plt.scatter([1.2],mac_control_hit[2,1], c='green')
 
-plt.scatter([-0.15],tina_control_hit[0,0],c='blue', marker='X', label='F1803')
+plt.scatter([-0.2],tina_control_hit[0,0],c='blue', marker='X', label='F1803')
 plt.scatter([0.05],tina_control_hit[1,0], c='orange', marker='X')
 plt.scatter([0.12],tina_control_hit[2,0], c='green', marker='X')
 
@@ -154,9 +154,9 @@ plt.scatter([1.15],zola_control_hit[2,1], c='green', marker='s',)
 
 tips = sns.load_dataset("tips")
 
-plt.ylabel('p(Hits)')
-plt.xlabel('Talker Sex')
+plt.ylabel('p(CR)', fontsize=15)
+plt.xlabel('Talker', fontsize=15)
 ax.set_ylim([0, 1])
 plt.legend(fontsize=8)
-plt.title('Proportion of Hits Over Talker Type')
+plt.title('Proportion of Correct Rejections (CR) \n Over Talker Type', fontsize=18)
 plt.show()
