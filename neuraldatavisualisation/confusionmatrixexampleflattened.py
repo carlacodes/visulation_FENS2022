@@ -84,9 +84,11 @@ y_pred = bigstimclasmat[:, 0]
 y_pred = bigstimclasmat.flatten()
 ax = plt.subplot()
 cm = sklearn.metrics.confusion_matrix(y_true, y_pred)
-#ConfusionMatrixDisplay.from_predictions(y_true, y_pred, colorbar='True', normalize='all',
-                                        #display_labels=['Distractor', 'Target'], cmap='Purples')
-ax=sns.heatmap(cm, annot=True, fmt='g', ax=ax, cmap='Purples');  # annot=True to annotate cells, ftm='g' to disable scientific notation
+cm_normalize=np.zeros((2,2))
+cm_normalize[0,:]=cm[0,:]/np.sum(cm[0,:])
+cm_normalize[1,:]=cm[1,:]/np.sum(cm[1,:])
+
+ax=sns.heatmap(cm_normalize, annot=cm, fmt='g', ax=ax, cmap='Purples');  # annot=True to annotate cells, ftm='g' to disable scientific notation
 
 # # labels, title and ticks
 ax.set_xlabel('Predicted labels');
@@ -95,12 +97,15 @@ ax.set_title('Confusion Matrix');
 ax.xaxis.set_ticklabels(['Distractor', 'Target']);
 ax.yaxis.set_ticklabels(['Distractor', 'Target']);
 cbar = ax.collections[0].colorbar
-
-cbar.set_ticks([0,int(np.sum(cm)/6), int(np.sum(cm)/3)])
-cbar.set_ticklabels(['0', '17%', '33%'])
+#
+# cbar.set_ticks([0,int(np.sum(cm)/6), int(np.sum(cm)/3)])
+# cbar.set_ticklabels(['0', '17%', '33%'])
 
 # cbar = fig.colorbar(ax, ticks=[0, y_true.size/2, y_true.size])
 # #cbar.ax.set_yticklabels(['0', '50%', '100%'])/2  # vertically oriented colorbar
-plt.title('Confusion Matrix for Train on Control F0, Test on Roved F0 for\n all Channels with a Sound Onset Response')
+plt.title('Confusion Matrix for Train on Original F0, Test on Roved F0 for\n all Channels with a Sound Onset Response')
 plt.savefig(bin_folder + '\confusionmatrixnormalisedtopredictor_distall' + '.png', dpi=500, bbox_inches='tight')
+plt.show()
+ConfusionMatrixDisplay.from_predictions(y_true, y_pred, colorbar='True', normalize='true',
+                                        display_labels=['Distractor', 'Target'], cmap='Purples')
 plt.show()
