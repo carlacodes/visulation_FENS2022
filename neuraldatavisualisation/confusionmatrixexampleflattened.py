@@ -59,11 +59,12 @@ for i in list_of_distractors:
 
 chansofinterest=[7,8,9, 10, 12, 14,16, 17, 26,  27, 28, 30]
 chansofinterest = [x - 1 for x in chansofinterest]
+bigclassmat = np.zeros([1, 12])
+bigstimclasmat = np.zeros([1, 12])
 for k in f:
     print(k)
 
-    bigclassmat = np.zeros([1, 12])
-    bigstimclasmat = np.zeros([1, 12])
+
     selectedclassmat=f[k]['classmat']
     selectedclassmat_soundonset=selectedclassmat[:,chansofinterest]
     selectedstimmat=f[k]['stimclassmat']
@@ -71,34 +72,35 @@ for k in f:
     bigclassmat=np.concatenate((bigclassmat, selectedclassmat_soundonset), axis=0)
     bigstimclasmat=np.concatenate((bigstimclasmat, selectedstimclassmat_soundonset), axis=0)
 
-    bigclassmat = np.delete(bigclassmat, 0, 0)
-    bigstimclasmat= np.delete(bigstimclasmat, 0, 0)
+bigclassmat = np.delete(bigclassmat, 0, 0)
+bigstimclasmat = np.delete(bigstimclasmat, 0, 0)
 
-    # meanbigclassmat=np.mean(bigclassmat, axis=1)
-    # meanbigstimclassmat=np.mean(bigstimclasmat, axis=1)
+# meanbigclassmat=np.mean(bigclassmat, axis=1)
+# meanbigstimclassmat=np.mean(bigstimclasmat, axis=1)
 
-    y_true=bigclassmat[:,0]
-    y_true=bigclassmat.flatten()
-    y_pred=bigstimclasmat[:,0]
-    y_pred=bigstimclasmat.flatten()
-    ax = plt.subplot()
-    cm=sklearn.metrics.confusion_matrix(y_true, y_pred)
-    ConfusionMatrixDisplay.from_predictions(y_true, y_pred, normalize='true', ax=ax, colorbar='True', display_labels=[meaning_of_distractor[k], 'Target'], cmap='Purples')
-    #ax=sns.heatmap(cm, annot=True, fmt='g', ax=ax, cmap='Purples');  # annot=True to annotate cells, ftm='g' to disable scientific notation
+y_true = bigclassmat[:, 0]
+y_true = bigclassmat.flatten()
+y_pred = bigstimclasmat[:, 0]
+y_pred = bigstimclasmat.flatten()
+ax = plt.subplot()
+cm = sklearn.metrics.confusion_matrix(y_true, y_pred)
+#ConfusionMatrixDisplay.from_predictions(y_true, y_pred, colorbar='True', normalize='all',
+                                        #display_labels=['Distractor', 'Target'], cmap='Purples')
+ax=sns.heatmap(cm, annot=True, fmt='g', ax=ax, cmap='Purples');  # annot=True to annotate cells, ftm='g' to disable scientific notation
 
-    # # labels, title and ticks
-    # ax.set_xlabel('Predicted labels');
-    # ax.set_ylabel('True labels');
-    # ax.set_title('Confusion Matrix');
-    # ax.xaxis.set_ticklabels([meaning_of_distractor[k], 'instruments']);
-    # ax.yaxis.set_ticklabels([meaning_of_distractor[k], 'instruments']);
-    #cbar = ax.collections[0].colorbar
-    #cbar.set_ticks([0, int(y_true.size/2), y_true.size])
-    #cbar.set_ticklabels(['0', '50%', '100%'])
+# # labels, title and ticks
+ax.set_xlabel('Predicted labels');
+ax.set_ylabel('True labels');
+ax.set_title('Confusion Matrix');
+ax.xaxis.set_ticklabels(['Distractor', 'Target']);
+ax.yaxis.set_ticklabels(['Distractor', 'Target']);
+cbar = ax.collections[0].colorbar
 
-    #cbar = fig.colorbar(ax, ticks=[0, y_true.size/2, y_true.size])
-    # #cbar.ax.set_yticklabels(['0', '50%', '100%'])/2  # vertically oriented colorbar
-    plt.title('Confusion Matrix for Train on Control F0, Test on Roved F0 for\n all Channels with a Sound Onset Response')
-    plt.savefig(bin_folder + '\confusionmatrixnormalisedtopredictor_dist'+meaning_of_distractor[k]+'.png', dpi=500, bbox_inches='tight')
+cbar.set_ticks([0,int(np.sum(cm)/6), int(np.sum(cm)/3)])
+cbar.set_ticklabels(['0', '17%', '33%'])
 
-    plt.show()
+# cbar = fig.colorbar(ax, ticks=[0, y_true.size/2, y_true.size])
+# #cbar.ax.set_yticklabels(['0', '50%', '100%'])/2  # vertically oriented colorbar
+plt.title('Confusion Matrix for Train on Control F0, Test on Roved F0 for\n all Channels with a Sound Onset Response')
+plt.savefig(bin_folder + '\confusionmatrixnormalisedtopredictor_distall' + '.png', dpi=500, bbox_inches='tight')
+plt.show()
