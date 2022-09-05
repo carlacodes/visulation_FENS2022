@@ -98,7 +98,7 @@ for k in f:
 
     #cbar = fig.colorbar(ax, ticks=[0, y_true.size/2, y_true.size])
     # #cbar.ax.set_yticklabels(['0', '50%', '100%'])/2  # vertically oriented colorbar
-    plt.title('Confusion Matrix for Train on Control F0, Test on Roved F0 for\n all Channels with a Sound Onset Response')
+    plt.title('Confusion Matrix for Responses Trained on Original F0, Tested on Roved F0 \n for all Sound Onset Response Channels', fontsize=12)
     plt.savefig(bin_folder + '\confusionmatrixnormalisedtopredictor_dist'+meaning_of_distractor[k]+'.png', dpi=500, bbox_inches='tight')
 
     plt.show()

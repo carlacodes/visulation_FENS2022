@@ -91,11 +91,11 @@ cm_normalize[1,:]=cm[1,:]/np.sum(cm[1,:])
 ax=sns.heatmap(cm_normalize, annot=cm, fmt='g', ax=ax, cmap='Purples');  # annot=True to annotate cells, ftm='g' to disable scientific notation
 
 # # labels, title and ticks
-ax.set_xlabel('Predicted labels');
-ax.set_ylabel('True labels');
+ax.set_xlabel('Predicted labels', fontsize=15)
+ax.set_ylabel('True labels', fontsize=15)
 ax.set_title('Confusion Matrix');
-ax.xaxis.set_ticklabels(['Distractor', 'Target']);
-ax.yaxis.set_ticklabels(['Distractor', 'Target']);
+ax.xaxis.set_ticklabels(['Distractor', 'Target'], fontsize=10);
+ax.yaxis.set_ticklabels(['Distractor', 'Target'], fontsize=10);
 cbar = ax.collections[0].colorbar
 #
 # cbar.set_ticks([0,int(np.sum(cm)/6), int(np.sum(cm)/3)])
@@ -103,7 +103,9 @@ cbar = ax.collections[0].colorbar
 
 # cbar = fig.colorbar(ax, ticks=[0, y_true.size/2, y_true.size])
 # #cbar.ax.set_yticklabels(['0', '50%', '100%'])/2  # vertically oriented colorbar
-plt.title('Confusion Matrix for Train on Original F0, Test on Roved F0 for\n all Channels with a Sound Onset Response')
+plt.title(
+    'CM of Responses Trained on Original F0, Tested on Roved F0 \n for all Sound Onset Response Channels and Distractors',
+    fontsize=12)
 plt.savefig(bin_folder + '\confusionmatrixnormalisedtopredictor_distall' + '.png', dpi=500, bbox_inches='tight')
 plt.show()
 ConfusionMatrixDisplay.from_predictions(y_true, y_pred, colorbar='True', normalize='true',

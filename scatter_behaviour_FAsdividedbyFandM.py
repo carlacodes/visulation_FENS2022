@@ -159,4 +159,7 @@ plt.xlabel('Talker', fontsize=15)
 ax.set_ylim([0, 1])
 plt.legend(fontsize=8)
 plt.title('Proportion of Correct Rejections (CR) \n Over Talker Type', fontsize=18)
+plt.savefig(bin_folder + '\proportionofFAsovertalkertype.png', dpi=500,
+            bbox_inches='tight')
 plt.show()
+

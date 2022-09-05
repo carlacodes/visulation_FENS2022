@@ -43,7 +43,7 @@ ax=sns.stripplot(data=matversion_eclair, jitter=0.1, color='navy', alpha=0.8)
 ax = sns.barplot([1,2,3], zola_y_l28,  color='green', label='F1702, trained',alpha=.3)
 ax = sns.barplot([1,2,3,4,5,6,7], np.mean(matversion_eclair, axis=0), color='navy', alpha=0.3, label='F1902, naive')
 ax=sns.barplot([1,2,3,4,5,6,7], np.mean(matversion_crumble, axis=0),  color='purple',  alpha=0.3, label='F1901, naive')
-plt.title('Decoding score relative to chance, trained on control F0 and tested on roved F0 inter-trial roving', fontsize=10)
+plt.title('Decoding score relative to chance, trained on \n control F0 and tested on roved F0 inter-trial roving', fontsize=15)
 str=['craft', "in contrast to", "when a", "accurate", "rev instruments", "of science", "pink noise instruments"]
 plt.xticks([0,1,2,3,4,5,6], labels=str, rotation=45)
 plt.xlabel('Distractor')
@@ -66,9 +66,9 @@ plt.xlabel('Distractor')
 
 str=['craft', "in contrast to", "when a", "accurate", "rev instruments", "of science", "pink noise instruments"]
 plt.xticks([0,1, 2,3,4,5,6], labels=str, rotation=45)
-plt.ylabel('Decoding Score Relative to Chance for All Sites')
+plt.ylabel('Decoding Score Relative to Chance for All Sites', fontsize=10)
 
-plt.title('Decoding score relative to chance, trained on control F0 and tested on roved F0 intra-trial roving',fontsize=10)
+plt.title('Decoding score relative to chance,  trained on control \n F0 and tested on roved F0 intra-trial roving',fontsize=15)
 
 plt.legend(fontsize=8)
 plt.ylim([-0.4, 0.4])

@@ -154,9 +154,14 @@ plt.scatter([1.15],zola_control_hit[2,1], c='green', marker='s',)
 
 tips = sns.load_dataset("tips")
 
-plt.ylabel('p(Hits)')
-plt.xlabel('Talker Sex')
+plt.ylabel('p(hits)', fontsize=15)
+plt.xticks([0,1],['Female', 'Male'], fontsize=18)
+#plt.xlabel('Talker', fontsize=15)
 ax.set_ylim([0, 1])
 plt.legend(fontsize=8)
-plt.title('Proportion of Hits Over Talker Type')
+plt.title('Proportion of Hits \n Over Talker Type', fontsize=18)
+plt.savefig(bin_folder + '\proportionofhitsovertalkertype.png', dpi=500,
+            bbox_inches='tight')
+
 plt.show()
+
