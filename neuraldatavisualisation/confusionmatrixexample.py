@@ -36,7 +36,7 @@ for i in list_of_distractors:
     # if os.path.isdir(user_input) is False:
     #     print('does not exist')
     #     list_of_distractors.remove(i)
-    count=0;
+    count=0
     if os.path.isdir(user_input) is True:
         #print('directoryfound')
         directory = os.listdir(user_input)
@@ -59,6 +59,8 @@ for i in list_of_distractors:
 
 chansofinterest=[7,8,9, 10, 12, 14,16, 17, 26,  27, 28, 30]
 chansofinterest = [x - 1 for x in chansofinterest]
+cm_mat_dist=np.empty([])
+cm_mat_targ=np.empty([])
 for k in f:
     print(k)
 
@@ -83,6 +85,13 @@ for k in f:
     y_pred=bigstimclasmat.flatten()
     ax = plt.subplot()
     cm=sklearn.metrics.confusion_matrix(y_true, y_pred)
+    distpercent=cm[0,:]/np.sum(cm[0,:])
+    distpercent2=distpercent[0]
+    cm_mat_dist=np.append(cm_mat_dist, distpercent2)
+    targpercent=cm[1, :] / np.sum(cm[1, :])
+    targpercent2=targpercent[1]
+    cm_mat_targ=np.append(cm_mat_targ, targpercent2)
+
     ConfusionMatrixDisplay.from_predictions(y_true, y_pred, normalize='true', ax=ax, colorbar='True', display_labels=[meaning_of_distractor[k], 'Target'], cmap='Purples')
     #ax=sns.heatmap(cm, annot=True, fmt='g', ax=ax, cmap='Purples');  # annot=True to annotate cells, ftm='g' to disable scientific notation
 
