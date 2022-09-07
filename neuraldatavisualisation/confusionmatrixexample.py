@@ -111,3 +111,25 @@ for k in f:
     plt.savefig(bin_folder + '\confusionmatrixnormalisedtopredictor_dist'+meaning_of_distractor[k]+'.png', dpi=500, bbox_inches='tight')
 
     plt.show()
+barWidth = 0.25
+meaning_of_distractor=['in contrast to', 'pink noise', 'of science', 'rev. instruments', 'accurate', 'when a', 'craft']
+
+
+cm_mat_targ=np.delete(cm_mat_targ, [0])
+cm_mat_dist=np.delete(cm_mat_dist, [0])
+r1 = np.arange(len(cm_mat_targ))
+r2 = [x + barWidth for x in r1]
+r3 = [x + barWidth for x in r2]
+
+# Make the plot
+plt.bar(r1, cm_mat_targ, color='darkmagenta', width=barWidth, edgecolor='white', label='Target')
+plt.bar(r2, cm_mat_dist, color='seagreen',width=barWidth, edgecolor='white', label='Distractor')
+plt.xticks([r + barWidth for r in range(len(cm_mat_targ))], meaning_of_distractor, fontsize=12)
+plt.xticks(rotation = 45)
+plt.ylabel('p(CC)', fontsize=12)
+plt.title('Proportion of Correct Classifications (CC) Over Distractor ', fontsize=15)
+plt.legend(fontsize=8)
+plt.savefig(bin_folder + '\confusionmatrixnormalisedtopredictor_dist_BARCHART' + '.png', dpi=500,
+            bbox_inches='tight')
+plt.show()
+
