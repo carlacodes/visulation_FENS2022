@@ -15,7 +15,7 @@ import os
 import h5py
 import numpy as np
 import sklearn
-
+from scipy.stats import sem
 from sklearn.datasets import make_classification
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 from sklearn.model_selection import train_test_split
@@ -59,11 +59,16 @@ for i in list_of_distractors:
 
 chansofinterest=[7,8,9, 10, 12, 14,16, 17, 26,  27, 28, 30]
 chansofinterest = [x - 1 for x in chansofinterest]
-cm_mat_dist=np.empty([])
-cm_mat_targ=np.empty([])
+cm_mat_dist_sd_matac=np.empty([])
+cm_mat_targ_sd_matac=np.empty([])
+cm_mat_targ_mean_ac=np.empty([])
+cm_mat_dist_mean_ac=np.empty([])
 for k in f:
     print(k)
-
+    cm_mat_dist = np.empty([])
+    cm_mat_dist_sd = np.empty([])
+    cm_mat_targ = np.empty([])
+    cm_mat_targ_sd = np.empty([])
     bigclassmat = np.zeros([1, 12])
     bigstimclasmat = np.zeros([1, 12])
     selectedclassmat=f[k]['classmat']
@@ -79,20 +84,48 @@ for k in f:
     # meanbigclassmat=np.mean(bigclassmat, axis=1)
     # meanbigstimclassmat=np.mean(bigstimclasmat, axis=1)
 
-    y_true=bigclassmat[:,0]
-    y_true=bigclassmat.flatten()
-    y_pred=bigstimclasmat[:,0]
-    y_pred=bigstimclasmat.flatten()
-    ax = plt.subplot()
-    cm=sklearn.metrics.confusion_matrix(y_true, y_pred)
-    distpercent=cm[0,:]/np.sum(cm[0,:])
-    distpercent2=distpercent[0]
-    cm_mat_dist=np.append(cm_mat_dist, distpercent2)
-    targpercent=cm[1, :] / np.sum(cm[1, :])
-    targpercent2=targpercent[1]
-    cm_mat_targ=np.append(cm_mat_targ, targpercent2)
+    #y_true=bigclassmat[:,0]
+    #run another loop, calculate the confusion matrix score for each site, then take the mean score?
+    for ii in np.arange(0,12):
+        y_true=bigclassmat[:,ii]
+        y_pred=bigstimclasmat[:,ii]
+        cm=sklearn.metrics.confusion_matrix(y_true, y_pred)
+        distpercent = cm[0, :] / np.sum(cm[0, :])
+        distpercent2 = distpercent[0]
+        cm_mat_dist = np.append(cm_mat_dist, distpercent2)
+        targpercent = cm[1, :] / np.sum(cm[1, :])
+        targpercent2 = targpercent[1]
 
-    ConfusionMatrixDisplay.from_predictions(y_true, y_pred, normalize='true', ax=ax, colorbar='True', display_labels=[meaning_of_distractor[k], 'Target'], cmap='Purples')
+        cm_targ_sd = 1 / np.sqrt(4 * cm[1, :].sum())
+        cm_mat_targ = np.append(cm_mat_targ, targpercent2)
+        #y_pred=bigstimclasmat[:,0]
+    #y_pred=bigstimclasmat.flatten()
+    #x = plt.subplot()
+    # cm=sklearn.metrics.confusion_matrix(y_true, y_pred)
+    # distpercent=cm[0,:]/np.sum(cm[0,:])
+    # distpercent2=distpercent[0]
+    # cm_mat_dist=np.append(cm_mat_dist, distpercent2)
+
+    cm_mat_targ = np.delete(cm_mat_targ, [0])
+    cm_mat_dist = np.delete(cm_mat_dist, [0])
+    cm_mat_dist_sd=sem(cm_mat_dist)
+    cm_mat_targ_sd=sem(cm_mat_targ)
+    #take means and append standard error from mean
+    cm_mat_targ_mean=np.mean(cm_mat_targ)
+    cm_mat_dist_mean=np.mean(cm_mat_dist)
+
+    cm_mat_targ_sd_matac=np.append(cm_mat_targ_sd_matac, cm_mat_targ_sd)
+    cm_mat_dist_sd_matac=np.append(cm_mat_dist_sd_matac, cm_mat_dist_sd)
+
+    cm_mat_targ_mean_ac=np.append(cm_mat_targ_mean_ac, cm_mat_targ_mean)
+    cm_mat_dist_mean_ac=np.append(cm_mat_dist_mean_ac, cm_mat_dist_mean)
+
+    cm_mat_targ_sd_matac2=np.delete(cm_mat_targ_sd_matac, 0)
+    cm_mat_dist_sd_matac2=np.delete(cm_mat_dist_sd_matac, [0])
+
+
+
+    #onfusionMatrixDisplay.from_predictions(y_true, y_pred, normalize='true', ax=ax, colorbar='True', display_labels=[meaning_of_distractor[k], 'Target'], cmap='Purples')
     #ax=sns.heatmap(cm, annot=True, fmt='g', ax=ax, cmap='Purples');  # annot=True to annotate cells, ftm='g' to disable scientific notation
 
     # # labels, title and ticks
@@ -115,21 +148,20 @@ barWidth = 0.25
 meaning_of_distractor=['in contrast to', 'pink noise', 'of science', 'rev. instruments', 'accurate', 'when a', 'craft']
 
 
-cm_mat_targ=np.delete(cm_mat_targ, [0])
-cm_mat_dist=np.delete(cm_mat_dist, [0])
+
 r1 = np.arange(len(cm_mat_targ))
 r2 = [x + barWidth for x in r1]
 r3 = [x + barWidth for x in r2]
 
 # Make the plot
-plt.bar(r1, cm_mat_targ, color='darkmagenta', width=barWidth, edgecolor='white', label='Target')
-plt.bar(r2, cm_mat_dist, color='seagreen',width=barWidth, edgecolor='white', label='Distractor')
+plt.bar(r1, cm_mat_targ_mean_ac, yerr=cm_mat_targ_sd_matac, color='darkmagenta', width=barWidth, edgecolor='white', label='Target')
+plt.bar(r2, cm_mat_dist_mean_ac, yerr=cm_mat_dist_sd_matac, color='seagreen',width=barWidth, edgecolor='white', label='Distractor')
 plt.xticks([r + barWidth for r in range(len(cm_mat_targ))], meaning_of_distractor, fontsize=12)
 plt.xticks(rotation = 45)
 plt.ylabel('p(CC)', fontsize=12)
 plt.title('Proportion of Correct Classifications (CC) Over Distractor ', fontsize=15)
-plt.legend(fontsize=8)
-plt.savefig(bin_folder + '\confusionmatrixnormalisedtopredictor_dist_BARCHART' + '.png', dpi=500,
+plt.legend(fontsize=12)
+plt.savefig(bin_folder + '\confusionmatrixnormalisedtopredictor_dist_BARCHART_sem' + '.png', dpi=500,
             bbox_inches='tight')
 plt.show()
 
