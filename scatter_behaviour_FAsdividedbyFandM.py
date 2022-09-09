@@ -119,7 +119,7 @@ def jitter(values,j):
 # sns.scatterplot(data=df_individual_cruella, legend=False, zorder=10, x_jitter=5,  markers=markers_cruella, label='F1815')
 # sns.scatterplot(data=df_individual_zola, legend=False, zorder=10, x_jitter=5,  markers=markers_zola, label='F1702')
 
-plt.scatter([-0.1],mac_control_hit[0,0],c='blue', label='F2002')
+plt.scatter([-0.1],mac_control_hit[0,0],c='blue')
 plt.scatter([0.01],mac_control_hit[1,0], c='orange')
 plt.scatter([0.13],mac_control_hit[2,0], c='green')
 
@@ -127,7 +127,7 @@ plt.scatter([0.8],mac_control_hit[0,1],c='blue')
 plt.scatter([0.99],mac_control_hit[1,1], c='orange')
 plt.scatter([1.2],mac_control_hit[2,1], c='green')
 
-plt.scatter([-0.2],tina_control_hit[0,0],c='blue', marker='X', label='F1803')
+plt.scatter([-0.2],tina_control_hit[0,0],c='blue', marker='X',)
 plt.scatter([0.05],tina_control_hit[1,0], c='orange', marker='X')
 plt.scatter([0.12],tina_control_hit[2,0], c='green', marker='X')
 
@@ -135,7 +135,7 @@ plt.scatter([0.8],tina_control_hit[0,1],c='blue', marker='X')
 plt.scatter([1.02],tina_control_hit[1,1], c='orange', marker='X')
 plt.scatter([1.1],tina_control_hit[2,1], c='green', marker='X')
 
-plt.scatter([-0.16],cruella_control_hit[0,0],c='blue', marker='^', label='F1815')
+plt.scatter([-0.16],cruella_control_hit[0,0],c='blue', marker='^',)
 plt.scatter([0.07],cruella_control_hit[1,0], c='orange',marker='^')
 plt.scatter([0.17],cruella_control_hit[2,0], c='green', marker='^')
 
@@ -143,7 +143,7 @@ plt.scatter([0.85],cruella_control_hit[0,1],c='blue', marker='^')
 plt.scatter([1.05],cruella_control_hit[1,1], c='orange', marker='^')
 plt.scatter([1.15],cruella_control_hit[2,1], c='green', marker='^')
 
-plt.scatter([-0.14],zola_control_hit[0,0],c='blue', marker='s', label='F1702')
+plt.scatter([-0.14],zola_control_hit[0,0],c='blue', marker='s',)
 plt.scatter([0.03],zola_control_hit[1,0], c='orange',marker='s',)
 plt.scatter([0.2],zola_control_hit[2,0], c='green', marker='s',)
 
@@ -157,9 +157,11 @@ tips = sns.load_dataset("tips")
 plt.ylabel('p(CR)', fontsize=15)
 plt.xlabel('Talker', fontsize=15)
 ax.set_ylim([0, 1])
-plt.legend(fontsize=8)
+#plt.legend(fontsize=12)
 plt.title('Proportion of Correct Rejections (CR) \n Over Talker Type', fontsize=18)
-plt.savefig(bin_folder + '\proportionofFAsovertalkertype.png', dpi=500,
+plt.legend([],[], frameon=False)
+plt.savefig(bin_folder + '\proportionofFAsovertalkertype_090922.png', dpi=500,
             bbox_inches='tight')
+
 plt.show()
 

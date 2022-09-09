@@ -158,9 +158,10 @@ plt.ylabel('p(hits)', fontsize=15)
 plt.xticks([0,1],['Female', 'Male'], fontsize=18)
 #plt.xlabel('Talker', fontsize=15)
 ax.set_ylim([0, 1])
-plt.legend(fontsize=8)
+#plt.legend(fontsize=8)
 plt.title('Proportion of Hits \n Over Talker Type', fontsize=18)
-plt.savefig(bin_folder + '\proportionofhitsovertalkertype.png', dpi=500,
+plt.legend([],[], frameon=False)
+plt.savefig(bin_folder + '\proportionofhitsovertalkertype_09092022.png', dpi=500,
             bbox_inches='tight')
 
 plt.show()
