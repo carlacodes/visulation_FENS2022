@@ -19,7 +19,7 @@ matversion_eclair_l27=info_barplot['matversion_eclair_l27']
 matversion_zola=info_barplot['matversion_zola']
 matversion_zola_l27=info_barplot['matversion_zola_l27']
 
-fname='proxmat_raw0209.mat'
+fname='proxmat_raw0209PS.mat'
 
 info_barplot_control = rd.loadmat(bin_folder + os.sep + fname)
 
