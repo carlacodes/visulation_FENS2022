@@ -120,8 +120,8 @@ for k in f:
     cm_mat_targ_mean_ac=np.append(cm_mat_targ_mean_ac, cm_mat_targ_mean)
     cm_mat_dist_mean_ac=np.append(cm_mat_dist_mean_ac, cm_mat_dist_mean)
 
-    cm_mat_targ_sd_matac2=np.delete(cm_mat_targ_sd_matac, 0)
-    cm_mat_dist_sd_matac2=np.delete(cm_mat_dist_sd_matac, [0])
+
+
 
 
 
@@ -147,20 +147,23 @@ for k in f:
 barWidth = 0.25
 meaning_of_distractor=['in contrast to', 'pink noise', 'of science', 'rev. instruments', 'accurate', 'when a', 'craft']
 
+cm_mat_targ_sd_matac = np.delete(cm_mat_targ_sd_matac, 0)
+cm_mat_dist_sd_matac = np.delete(cm_mat_dist_sd_matac, 0)
+cm_mat_dist_mean_ac = np.delete(cm_mat_dist_mean_ac, 0)
+cm_mat_targ_mean_ac = np.delete(cm_mat_targ_mean_ac, 0)
 
-
-r1 = np.arange(len(cm_mat_targ))
+r1 = np.arange(len(cm_mat_targ_mean_ac))
 r2 = [x + barWidth for x in r1]
 r3 = [x + barWidth for x in r2]
 
 # Make the plot
 plt.bar(r1, cm_mat_targ_mean_ac, yerr=cm_mat_targ_sd_matac, color='darkmagenta', width=barWidth, edgecolor='white', label='Target')
 plt.bar(r2, cm_mat_dist_mean_ac, yerr=cm_mat_dist_sd_matac, color='seagreen',width=barWidth, edgecolor='white', label='Distractor')
-plt.xticks([r + barWidth for r in range(len(cm_mat_targ))], meaning_of_distractor, fontsize=12)
+plt.xticks([r + barWidth for r in range(len(cm_mat_targ_mean_ac))], meaning_of_distractor, fontsize=12)
 plt.xticks(rotation = 45)
 plt.ylabel('p(CC)', fontsize=12)
 plt.title('Proportion of Correct Classifications (CC) Over Distractor ', fontsize=15)
-plt.legend(fontsize=12)
+plt.legend(fontsize=12, loc='lower left')
 plt.savefig(bin_folder + '\confusionmatrixnormalisedtopredictor_dist_BARCHART_sem' + '.png', dpi=500,
             bbox_inches='tight')
 plt.show()
