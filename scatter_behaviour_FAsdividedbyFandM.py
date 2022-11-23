@@ -155,10 +155,12 @@ plt.scatter([1.15],zola_control_hit[2,1], c='green', marker='s',)
 tips = sns.load_dataset("tips")
 
 plt.ylabel('p(CR)', fontsize=15)
-plt.xlabel('Talker', fontsize=15)
+plt.xticks([0,1],['Female', 'Male'], fontsize=18)
+
+#plt.xlabel('Talker', fontsize=15)
 ax.set_ylim([0, 1])
 #plt.legend(fontsize=12)
-plt.title('Proportion of Correct Rejections (CR) \n Over Talker Type', fontsize=18)
+plt.title('Correct Rejections (Catch Trials)', fontsize=25)
 plt.legend([],[], frameon=False)
 plt.savefig(bin_folder + '\proportionofFAsovertalkertype_090922.png', dpi=500,
             bbox_inches='tight')

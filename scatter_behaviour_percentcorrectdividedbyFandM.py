@@ -162,7 +162,7 @@ plt.xticks([0,1],['Female', 'Male'], fontsize=18)
 #plt.xlabel('Talker', fontsize=15)
 ax.set_ylim([0, 1])
 plt.legend(fontsize=15)
-plt.title('Proportion of Correct Responses (CR) \n Over Talker Type', fontsize=18)
+plt.title('% Correct', fontsize=25)
 plt.savefig(bin_folder + '\proportionofcorrectresponsesovertalkertype_090922.png', dpi=500,
             bbox_inches='tight')
 plt.show()
